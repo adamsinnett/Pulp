@@ -1,3 +1,4 @@
 (defproject pulp "1.0.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :dependencies [[org.clojure/clojure "1.3.0"]])
+  :description "A Jekyll-inspired static site builder in clojure" 
+  :dependencies [[org.clojure/clojure "1.3.0"]]
+  :main core)
