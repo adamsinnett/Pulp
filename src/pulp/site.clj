@@ -1,13 +1,10 @@
 (ns pulp.site
   "Generate a static site given a source directory of templates"
+  (:use
+    [hiccup.core])
   (:require
     [clojure.java.io :as io])
   (:import [java.io File]))
-
-(defn compile-site
-  "Create a site from a given source directory."
-  [source-dir]
-  (map (compile-pages (filter only-template-files (get-template-files source-dir)))))
 
 (defn compile-pages
   "Create html file from a template"
@@ -23,3 +20,11 @@
   "Return all the file from a given directory"
   [source-dir]
   (file-seq (io/file source-dir)))
+
+(defn compile-site
+  "Create a site from a given source directory."
+  [source-dir]
+  (let [all-files (get-template-files source-dir)
+        template-files (filter only-template-files all-files)
+        compiled (map compile-pages template-files)]
+    (compiled)))
