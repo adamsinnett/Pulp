@@ -4,7 +4,8 @@
     [pulp site])
   (:require
     [clojure.java.io :as io])
-  (:import [java.io File]))
+  (:import [java.io File])
+  (:gen-class))
 
 (defn write-page
   "Write the generated page into the destination folder"
@@ -20,9 +21,8 @@
 (defn gen-site
   "Generate a static site"
   [source dest]
-  (write-site 
-    (compile-site source)
-    dest))
+  (let [site (compile-site source)]
+     write-site site dest))
 
-(defn -main [source dest & args]
-  (gen-site (source dest)))
+(defn -main [source dest]
+  (gen-site source dest))
