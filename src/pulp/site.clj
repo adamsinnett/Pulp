@@ -4,7 +4,7 @@
     [hiccup.core])
   (:require
     [clojure.java.io :as io])
-  (:import java.io.File))
+  (:import org.pegdown.PegDownProcessor java.io.File))
 
 (defn directory
  "Return a java directory object"
@@ -19,15 +19,21 @@
  (file-seq (directory source-dir)))
 
 (defn isTemplate
+  "Return true if the file is a markdown file"
+  [file]
+  (filter #(re-matches #"\.md" %) file))
+
+(defn isWebpage
   "Return true if the file is an html file"
   [file]
   (filter #(re-matches #"\.html" %) file))
-
 
 (defn compile-site
   "Create a site from a given source directory."
   [source-dir]
   (doseq [file (files source-dir)]
-     (if (and (.isFile file) (isTemplate file))
-        (println (load-string (slurp file)))
-        (println "nope"))))
+     (if (.isFile file) 
+        ((if (isTemplate file)
+           (PegDownProcessor/markdownToHtml (slurp file)) ())
+         (if (isWebpage file) (slurp file) ())
+        ()) ())))
