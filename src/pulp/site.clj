@@ -4,17 +4,30 @@
     [hiccup.core])
   (:require
     [clojure.java.io :as io])
-  (:import [java.io File]))
+  (:import java.io.File))
 
+(defn directory
+ "Return a java directory object"
+ [source]
+ (let [current-dir (io/file source)
+      isDir (.isDirectory current-dir)]
+      (if isDir current-dir (io/file ""))))
 
-(defn get-template-files
-  "Return all the file from a given directory"
-  [source-dir]
-  (filter .isFile (file-seq (File. source-dir))))
+(defn files
+ "Return all files from a directory"
+ [source-dir]
+ (file-seq (directory source-dir)))
+
+(defn isTemplate
+  "Return true if the file is an html file"
+  [file]
+  (filter #(re-matches #"\.html" %) file))
+
 
 (defn compile-site
   "Create a site from a given source directory."
   [source-dir]
-  (let [all-files (get-template-files source-dir)
-        template-files (filter #(re-matches #"\.html" %) (.getName all-files))]
-    (print template-files)))
+  (doseq [file (files source-dir)]
+     (if (and (.isFile file) (isTemplate file))
+        (println (load-string (slurp file)))
+        (println "nope"))))
