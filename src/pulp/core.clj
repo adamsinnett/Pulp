@@ -10,7 +10,7 @@
 (defn write-page
   "Write the generated page into the destination folder"
   [page]
-  (spit w (:data page))))
+  (spit w (:title page) (:page page))))
 
 (defn write-site
   "Write the generated site into a destination folder"

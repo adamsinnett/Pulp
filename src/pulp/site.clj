@@ -32,6 +32,7 @@
   [source-dir]
   (doseq [file (files source-dir)]
      (if (and (.isFile file) (isWebpage file))
-        (-> (read-string (slurp file))
-            eval
-            html))))
+        (hash-map :title file 
+                  :page (-> (read-string (slurp file))
+                            eval
+                            html))))
