@@ -35,4 +35,4 @@
         (hash-map :title file 
                   :page (-> (read-string (slurp file))
                             eval
-                            html))))
+                            html)))))
