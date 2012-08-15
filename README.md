@@ -1,8 +1,9 @@
--# pulp
--A clojure static website generator in the Jekyll style using hiccup as
+# pulp
+A clojure static website generator in the Jekyll style using hiccup as
 a templating system. Convert a series of clojure templates into a static
 site that can be uploaded to any host.
--## Usage
+
+## Usage
 As a standalone jar:
 
 git clone git@github.com:quandrum/Pulp.git && cd pulp
@@ -18,6 +19,7 @@ In your code:
 
 (pulp/gen-site template-dir out-dir)
 
--## License
--Copyright (C) 2012 Adam Sinnett
--Distributed under the Eclipse Public License, the same as Clojure.
+## License
+
+Copyright (C) 2012 Adam Sinnett
+Distributed under the Eclipse Public License, the same as Clojure.
