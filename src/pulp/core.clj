@@ -1,3 +1,4 @@
+;; Copyright 2012 Adam Sinnett under EPL
 (ns pulp.core
   "Pulp: Static Site Generator"
   (:use
@@ -10,7 +11,7 @@
 (defn write-page
   "Write the generated page into the destination folder"
   [page]
-  (spit w (:title page) (:page page))))
+  (spit (:title page) (:page page)))
 
 (defn write-site
   "Write the generated site into a destination folder"

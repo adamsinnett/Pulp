@@ -1,3 +1,4 @@
+;; Copyright 2012 Adam Sinnett under epl
 (ns pulp.config
   (:import (java.io File)))
 

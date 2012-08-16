@@ -1,3 +1,4 @@
+;; Copyright 2012 Adam Sinnett under EPL
 (ns pulp.site
   "Generate a static site given a source directory of templates"
   (:use
@@ -35,4 +36,4 @@
         (hash-map :title file 
                   :page (-> (read-string (slurp file))
                             eval
-                            html))))
+                            html)))))
