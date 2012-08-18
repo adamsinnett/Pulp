@@ -1,3 +1,4 @@
+;; Copyright 2012 Adam Sinnett under EPL
 (ns pulp.core
   "Pulp: Static Site Generator"
   (:use
